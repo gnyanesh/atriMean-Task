@@ -1,0 +1,122 @@
+<div id="group" >
+<div class="col-md-6 col-md-offset-3">
+    
+    <form name="form" (ngSubmit)="f.form.valid && group()" #f="ngForm" >
+     </form>
+  </div>
+  
+</div>
+
+<div class="box" *ngIf="showHide">
+
+  {{ leastValue }}
+
+  <h2>Best Employee Name is --- {{ leastValueName }}</h2>
+    <button type="button" (click)="changeShowStatus()">Create</button>
+  
+  
+  
+  
+  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label for="password">Hardwares</label>
+        
+
+        <table id="demo" class="table" >
+                        <tr>
+                            <th>#</th>
+                            
+                            <th>Hardware Name</th>
+                            <th>Assign Employee</th> 
+                            <th>Assigned Date</th>
+                            <th>Fine</th> 
+                            <th>Status</th> 
+                            <th>Change Status</th>
+                        </tr>
+                
+
+
+
+                        <tr *ngFor="let user of groupp;let i = index">
+                            <td>{{i + 1}}</td>
+                           
+                            
+                            <td>{{user.hardwarename}}</td>
+                            <td>{{user.empname}}</td>
+                            <td>{{user.groupname}}</td>
+                            <td>{{user.charge}}</td>
+                            <th>{{user.status}}</th> 
+                            <td><button (click)="statusChange(user._id)">Assign Ends..</button></td>
+                        </tr>
+                    </table>
+
+               
+           
+                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+    </div>
+    </div>
+  
+  <div *ngIf="showHidee">
+        <button type="button" (click)="changeShowStatus()">Back</button>
+        <div class="col-md-6 col-md-offset-3">
+                <h2>Assign Hardware</h2>
+                <form name="form" (ngSubmit)="f.form.valid && group()" #f="ngForm" novalidate>
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                        <label for="firstName">Date</label>
+                        <input type="date" class="form-control" name="firstName" [(ngModel)]="model.groupname" #firstName="ngModel" required />
+                        <div *ngIf="f.submitted && !firstName.valid" class="help-block">Date is required</div>
+                    </div>
+              
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firsName.valid }">
+                      <label for="firsName">Hardwares</label>
+
+                     
+                      
+                      <select multiple  [(ngModel)]="model.hardwarename" name="hardwarename" required #hardwarename="ngModel" >
+                          <option *ngFor="let user of hardwares" [ngValue]="user.hardwarename" >
+                               {{ user.hardwarename }} - {{ user.hardwaremodel}}
+                          </option>
+                    </select>
+                    <div>{{model.members}}</div>
+                      <div *ngIf="f.submitted && !hardwarename.valid" class="help-block">Atleast One Member is required</div>
+                  </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firsName.valid }">
+                      <label for="firsName">Members</label>
+                      
+                      <select multiple  [(ngModel)]="model.empname" name="empname" required #empname="ngModel" >
+                          <option *ngFor="let user of users" [ngValue]="user.fullname" >
+                               {{ user.fullname }}
+                          </option>
+                    </select>
+                    
+                      <div *ngIf="f.submitted && !empname.valid" class="help-block">Atleast One Member is required</div>
+                  </div>
+              
+                <div >
+            <label for="charge">Fine Charges(Any..)</label>
+            <input type="text" class="form-control" name="charge" [(ngModel)]="model.charge" #charge="ngModel"  />
+            
+        </div>
+
+
+
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !hardwarename.valid }">
+            <label for="status">Status</label>
+            <input type="text" class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel" required />
+            <div *ngIf="f.submitted && !status.valid" class="help-block">Status is required</div>
+        </div>
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Assign</button>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <a [routerLink]="['/dashboard']" class="btn btn-link">Cancel</a>
+                    </div>
+                </form>
+              </div>
+
+  </div>
+  
+  
+  
+    
+  

@@ -1,0 +1,93 @@
+
+               
+                    <h1>Hardware</h1>
+                   
+
+
+                <table id="demo" class="table" *ngIf="showHidee">
+                        <tr>
+                            <th>#</th>
+                            <th>Hardware ID</th>
+                            <th>Hardware Name</th>
+                            <th>Hardware Model</th> 
+                            
+                        </tr>
+                        <tr *ngFor="let user of book;let i = index">
+                            <td>{{i + 1}}</td>
+                           
+                            <td><button (click)="ticketinfo(user.hardwareid)">{{user.hardwareid}}</button></td>
+                            <td>{{user.hardwarename}}</td>
+                            <td>{{user.hardwaremodel}}</td>
+                            
+                        </tr>
+                    </table>
+
+
+                    
+
+                    
+
+                        <div>
+                           
+                            <div class="box" *ngIf="showHide">
+                                <button type="button" (click)="changeShowStatus()">Back</button>
+                              <h1>Hardware ID{{tickett.ticketid}} -  Information</h1>
+        
+
+                    <table class="table">
+                            <tr>
+                                
+                                <th>Hardware ID</th>
+                                <th>Hardware Name</th>
+                                <th>Hardware Model</th> 
+                                
+                            </tr>
+                            <tr >
+                                
+                                <td>{{tickett.ticketid}}</td>
+                                <td>{{tickett.hardwarename}}</td>
+                                <td>{{tickett.hardwaremodel}}</td>
+                                
+                                <td><button (click)="ticketdelete(tickett._id)">Delete</button></td>
+                               <!-- <td><button (click)="ticketupdate(tickett._id)">Edit</button></td>-->
+                            </tr>
+                            <tr>
+                                <div>
+                                    <form name="form" (ngSubmit)="ticketupdate(tickett.ticketid)" >
+                                            Hardware Name:      
+                                            <select class="form-control" name="status" value="tickett.status" [(ngModel)]="model.status" #status="ngModel">
+                                                     <option *ngFor="let user of arrBirds" [ngValue]="user.name">
+                                                             {{ user.name }}
+                                                     </option>
+                                           
+                                           </select>
+                                                                               
+                                             Hardware Model:  
+                                             <select class="form-control" value="tickett.priority" name="priority" [(ngModel)]="model.priority" #priority="ngModel">
+                                                       <option *ngFor="let user of arrPrio" [ngValue]="user.name">
+                                                               {{ user.name }}
+                                                       </option>
+                                           
+                                           
+                                             </select>             
+  
+  <button [disabled]="loading" class="btn btn-primary">Update</button>
+                                </form>
+                                </div>
+                            </tr>
+                        </table>
+              
+
+
+                        <h1>{{tic.status}} - Ticket Information</h1>
+        
+
+                       
+                            </div>
+                          </div>
+
+                          
+
+
+
+                          

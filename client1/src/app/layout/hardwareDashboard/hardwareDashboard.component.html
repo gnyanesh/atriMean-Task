@@ -1,0 +1,21 @@
+<h1>Hardware</h1>
+                   
+
+
+                <table id="demo" class="table" >
+                        <tr>
+                            <th>#</th>
+                            <th>Alloted Date</th>
+                            <th>Hardware Name</th>
+                            <th>Charge</th> 
+                            
+                        </tr>
+                        <tr *ngFor="let user of tickett;let i = index">
+                            <td>{{i + 1}}</td>
+                           
+                            <td>{{user.groupname}}</td>
+                            <td>{{user.hardwarename}}</td>
+                            <td>{{user.charge}}</td>
+                            
+                        </tr>
+                    </table>
